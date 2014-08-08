@@ -2,6 +2,7 @@ package com.ibrahimkuley.com.dao;
 
 import javax.servlet.ServletContext;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -28,7 +29,7 @@ public class JDBCPeople {
 
         String sql = "insert into people" + " (firstname,lastname,gender) values(?,?,?)";
 
-        java.sql.PreparedStatement ps = connection.prepareStatement(sql);// sorgumuzu oluşturduk
+        PreparedStatement ps = connection.prepareStatement(sql);// sorgumuzu oluşturduk
 
         ps.setString(1, people.getFirstname()); // sıralarına kayıtları yapıştırdık
         ps.setString(2, people.getLastname());// sıralarına kayıtları yapıştırdık
@@ -40,7 +41,7 @@ public class JDBCPeople {
 
     public static List<People> getRecords(Connection connection) throws SQLException {
         String sql = "Select * from people"; // sorgumuzu oluşturduk
-        java.sql.PreparedStatement preparedStatement = connection.prepareStatement(sql); // sql işlenmesi için metoda verdik
+        PreparedStatement preparedStatement = connection.prepareStatement(sql); // sql işlenmesi için metoda verdik
 
         ResultSet resultSet = preparedStatement.executeQuery(); // liste halinde result set ederk getirdik.
 
@@ -63,14 +64,14 @@ public class JDBCPeople {
     public static void delete(String id, Connection connection) throws SQLException {
 
         String sql = "Delete from people where id=" + id;
-        java.sql.PreparedStatement ps = connection.prepareStatement(sql); //SQL sorgumuzu verdik nesneye
+        PreparedStatement ps = connection.prepareStatement(sql); //SQL sorgumuzu verdik nesneye
         ps.executeUpdate();  // SQL sorgumuzu çalıştırdık
 
     }
 
     public static void update(People people, Connection connection) throws SQLException {
         String sql = "Update people set firstname=?,lastname=?,gender=? where id=?";
-        java.sql.PreparedStatement ps = connection.prepareStatement(sql);
+        PreparedStatement ps = connection.prepareStatement(sql);
         ps.setString(1, people.getFirstname());
         ps.setString(2, people.getLastname());
         ps.setString(3, people.getGender());
