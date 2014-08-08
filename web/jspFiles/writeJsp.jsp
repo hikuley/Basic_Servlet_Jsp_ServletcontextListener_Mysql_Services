@@ -15,10 +15,10 @@
 <body>
 <h1>Peoples</h1>
 <table>
-    <tr>
-        <td>First Name</td>
-        <td>Last Name</td>
-        <td>Gender</td>
+    <tr style="font-weight: bold">
+        <td width="150">First Name</td>
+        <td width="150">Last Name</td>
+        <td width="150">Gender</td>
     </tr>
     <%
         //peopleListesi anahtar kelimesi ile  veri setimizi aldık
